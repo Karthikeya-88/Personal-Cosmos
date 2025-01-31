@@ -1,132 +1,98 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { Component, createRef } from "react";
+import { withRouter, Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
-import Popup from "reactjs-popup";
-import { Link } from "react-router-dom";
-
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import "./index.css";
 
-const BookData = (props) => {
-  const [state, setState] = useState({ translateY: 0, opacity: 1 });
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const cardOffsetTop = cardRef.current.offsetTop;
-      const cardHeight = cardRef.current.offsetHeight;
-      const windowHeight = window.innerHeight;
-
-      if (scrollTop + windowHeight > cardOffsetTop + cardHeight / 2) {
-        setState({ translateY: 0, opacity: 1 });
-      } else if (scrollTop + windowHeight < cardOffsetTop + cardHeight / 2) {
-        setState({ translateY: 100, opacity: 0.4 });
-      }
+class BookData extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translateY: 0,
+      opacity: 1,
     };
+    this.cardRef = createRef();
+  }
 
-    window.addEventListener("scroll", handleScroll);
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
 
-  return (
-    <CartContext.Consumer>
-      {(value) => {
-        const { addCartItem } = value;
-        const { bookDetails } = props;
-        const {
-          title,
-          author,
-          imageUrl,
-          availability,
-          category,
-          overview,
-          publishedDate,
-          pages,
-        } = bookDetails;
+  handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const cardOffsetTop = this.cardRef.current.offsetTop;
+    const cardHeight = this.cardRef.current.offsetHeight;
+    const windowHeight = window.innerHeight;
 
-        const onAddtoCart = () => {
-          addCartItem({ ...bookDetails });
-        };
+    if (scrollTop + windowHeight > cardOffsetTop + cardHeight / 2) {
+      this.setState({ translateY: 0, opacity: 1 });
+    } else if (scrollTop + windowHeight < cardOffsetTop + cardHeight / 2) {
+      this.setState({ translateY: 100, opacity: 0.4 });
+    }
+  };
 
-        return (
-          <li
-            className="books-list"
-            ref={cardRef}
-            style={{
-              transform: `translateY(${state.translateY}px)`,
-              opacity: state.opacity,
-            }}
-          >
-            <h1 className="book-title">{title}</h1>
-            <p className="book-author">
-              <span
-                style={{ color: "#EE161F", textShadow: "0.8px 0px #FFC603" }}
-              >
-                Author -{" "}
-              </span>
-              {author}
-            </p>
-            <div className="image-popup">
-              <img src={imageUrl} alt={title} className="book-image" />
-              <Popup
-                modal
-                trigger={
-                  <button type="button" className="trigger-button">
-                    More Details
-                  </button>
-                }
-              >
-                {(close) => (
-                  <>
-                    <ul className="popup-container">
-                      <button
-                        type="button"
-                        className="close-button"
-                        onClick={() => close()}
-                      >
-                        <IoMdCloseCircleOutline className="close-button close" />
-                      </button>
-                      <li className="popup-items">{title}</li>
-                      <li className="popup-items">
-                        Category: <span className="span-item">{category}</span>
-                      </li>
-                      <li className="popup-items">
-                        Published Date:{" "}
-                        <span className="span-item">{publishedDate}</span>
-                      </li>
-                      <li className="popup-items">
-                        Page Count: <span className="span-item">{pages}</span>
-                      </li>
-                      <li className="popup-items">
-                        Availabilty:{" "}
-                        <span className="span-item">{availability}</span>
-                      </li>
-                      <li className="popup-items">
-                        Overview: <span className="span-item">{overview} </span>
-                      </li>
-                    </ul>
-                  </>
-                )}
-              </Popup>
-            </div>
+  handleMoreDetails = () => {
+    const { history, bookDetails } = this.props;
+    history.push(`/books/${bookDetails.id}`);
+  };
 
-            <button
-              type="button"
-              className="order-button"
-              onClick={onAddtoCart}
+  render() {
+    return (
+      <CartContext.Consumer>
+        {(value) => {
+          const { addCartItem } = value;
+          const { title, author, imageUrl } = this.props.bookDetails;
+
+          const onAddToCart = () => {
+            addCartItem({ ...this.props.bookDetails });
+          };
+
+          return (
+            <li
+              className="books-list"
+              ref={this.cardRef}
+              style={{
+                transform: `translateY(${this.state.translateY}px)`,
+                opacity: this.state.opacity,
+              }}
             >
-              <Link to="/cart" className="order-button-link">
-                Order Novel
-              </Link>
-            </button>
-          </li>
-        );
-      }}
-    </CartContext.Consumer>
-  );
-};
+              <h1 className="book-title">{title}</h1>
+              <p className="book-author">
+                <span
+                  style={{ color: "#EE161F", textShadow: "0.8px 0px #FFC603" }}
+                >
+                  Author -{" "}
+                </span>
+                {author}
+              </p>
+              <div className="image-popup">
+                <img src={imageUrl} alt={title} className="book-image" />
+                <button
+                  type="button"
+                  className="trigger-button"
+                  onClick={this.handleMoreDetails}
+                >
+                  More Details
+                </button>
+              </div>
+              <button
+                type="button"
+                className="order-button"
+                onClick={onAddToCart}
+              >
+                <Link to="/cart" className="order-button-link">
+                  Order Novel
+                </Link>
+              </button>
+            </li>
+          );
+        }}
+      </CartContext.Consumer>
+    );
+  }
+}
 
-export default BookData;
+export default withRouter(BookData);

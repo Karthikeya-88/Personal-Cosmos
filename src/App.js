@@ -1,5 +1,5 @@
-import { Component } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom"; // Switch from 'react-router-dom'
 
 import "./App.css";
 
@@ -9,6 +9,7 @@ import Books from "./components/Books";
 import Cart from "./components/Cart";
 import NotFound from "./components/NotFound";
 import CartContext from "./context/CartContext";
+import BookDetails from "./components/BookDetails";
 
 class App extends Component {
   state = { cartList: [] };
@@ -51,14 +52,15 @@ class App extends Component {
             deleteCartItem: this.deleteCartItem,
           }}
         >
-          <Routes>
-            <Route path="/" element={<Home />} exact />
-            <Route path="/books" element={<Books />} exact />
-            <Route path="/about" element={<About />} exact />
-            <Route path="/cart" element={<Cart />} exact />
-
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Switch>
+            {" "}
+            <Route path="/" exact component={Home} />
+            <Route path="/books" exact component={Books} />
+            <Route path="/about" exact component={About} />
+            <Route path="/cart" exact component={Cart} />
+            <Route path="/books/:id" component={BookDetails} />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </CartContext.Provider>
       </BrowserRouter>
     );

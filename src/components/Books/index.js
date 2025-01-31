@@ -11,12 +11,11 @@ const categoriesList = [
   { id: "FANTASY", displayText: "Fantasy" },
   { id: "FICTION", displayText: "Fiction" },
   { id: "BIOGRAPHY", displayText: "Biography" },
-  { id: "ADVENTURE FICTION", displayText: "Adventure fiction" },
+  { id: "ADVENTURE FICTION", displayText: "Adventure Fiction" },
 ];
 
 class Books extends Component {
   state = {
-    activeCatId: categoriesList[0].id,
     booksData: [],
     searchInput: "",
     isLoading: true,
@@ -28,32 +27,36 @@ class Books extends Component {
 
   getBooks = async () => {
     try {
-      const { activeCatId } = this.state;
-      const response = await fetch(
-        `https://pc-backend-mbl7.vercel.app/books?category=${activeCatId}`
-      );
-      const daa = "https://pc-backend-mbl7.vercel.app/books?category";
-      console.log(daa);
-      if (response.status === 200) {
-        const data = await response.json();
-        console.log(data);
-        const updatedData = data.books.map((each) => ({
-          id: each.id,
-          title: each.title,
-          author: each.author,
-          category: each.category,
-          imageUrl: each.imageUrl,
-          availability: each.availability,
-          pages: each.pages,
-          publishedDate: each.published_date,
-          overview: each.overview,
-        }));
-        this.setState({ booksData: updatedData, isLoading: false });
-      } else {
-        console.log("Error:", response.status);
+      const response = await fetch(`https://pc-backend-mbl7.vercel.app/books/`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch books. Status: ${response.status}`);
       }
+
+      const data = await response.json();
+      console.log("Fetched Data:", data);
+
+      if (!data.books || data.books.length === 0) {
+        this.setState({ booksData: [], isLoading: false });
+        return;
+      }
+
+      const updatedData = data.books.map((each) => ({
+        id: each.id,
+        title: each.title,
+        author: each.author,
+        category: each.category,
+        imageUrl: each.imageUrl,
+        availability: each.availability,
+        pages: each.pages,
+        publishedDate: each.published_date,
+        overview: each.overview,
+      }));
+
+      this.setState({ booksData: updatedData, isLoading: false });
     } catch (error) {
-      console.log("Error Fetching Books:", error);
+      console.error("Error Fetching Books:", error);
+      this.setState({ booksData: [], isLoading: false });
     }
   };
 
@@ -62,38 +65,43 @@ class Books extends Component {
   };
 
   onActiveCategory = (event) => {
-    this.setState({ activeCatId: event.target.value }, this.getBooks);
+    this.setState(
+      { activeCatId: event.target.value, isLoading: true },
+      this.getBooks
+    );
   };
 
   sortAscending = () => {
-    const { booksData } = this.state;
-    this.setState({
-      booksData: booksData
-        .slice()
-        .sort((a, b) => a.title.localeCompare(b.title)),
-    });
+    this.setState((prevState) => ({
+      booksData: [...prevState.booksData].sort((a, b) =>
+        a.title.localeCompare(b.title)
+      ),
+    }));
   };
 
   sortDescending = () => {
-    const { booksData } = this.state;
-    this.setState({
-      booksData: booksData
-        .slice()
-        .sort((b, a) => a.title.localeCompare(b.title)),
-    });
+    this.setState((prevState) => ({
+      booksData: [...prevState.booksData].sort((a, b) =>
+        b.title.localeCompare(a.title)
+      ),
+    }));
   };
 
   renderNoBooks = () => (
     <div>
-      <p>Sorry, Book not found</p>
+      <p>Sorry, no books found in this category.</p>
     </div>
   );
 
   render() {
-    const { booksData, searchInput, isLoading, activeCatId } = this.state;
+    const { booksData, searchInput, isLoading } = this.state;
+
+    const filteredBooks = booksData.filter((each) =>
+      each.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
 
     return (
-      <>
+      <div className="books-ultimate-container">
         <Header />
         <div className="books-input">
           <div>
@@ -112,13 +120,6 @@ class Books extends Component {
               <GrDescend />
             </button>
           </div>
-          <select value={activeCatId} onChange={this.onActiveCategory}>
-            {categoriesList.map((each) => (
-              <option key={each.id} value={each.id}>
-                {each.displayText}
-              </option>
-            ))}
-          </select>
           <div
             className="search-bar"
             style={{ display: "flex", alignItems: "center" }}
@@ -133,6 +134,7 @@ class Books extends Component {
             <CiSearch style={{ fontSize: "medium" }} />
           </div>
         </div>
+
         {isLoading ? (
           <div className="loader-spinner">
             <PuffLoader
@@ -140,23 +142,18 @@ class Books extends Component {
               loading={true}
               size={160}
               aria-label="Loading Spinner"
-              data-testid="loader"
             />
           </div>
-        ) : (
+        ) : filteredBooks.length > 0 ? (
           <ul className="books-unordered-list">
-            {booksData
-              .filter((each) => {
-                return searchInput.toLowerCase() === ""
-                  ? this.renderNoBooks()
-                  : each.title.toLowerCase().includes(searchInput);
-              })
-              .map((each) => (
-                <BookData key={each.id} bookDetails={each} />
-              ))}
+            {filteredBooks.map((each) => (
+              <BookData key={each.id} bookDetails={each} />
+            ))}
           </ul>
+        ) : (
+          this.renderNoBooks()
         )}
-      </>
+      </div>
     );
   }
 }

@@ -68,26 +68,6 @@
     font-size: x-small;
   }
 
-  .popup-items {
-    color: #000000;
-    font-weight: bold;
-    font-size: x-small;
-    font-family: "Garamond";
-    text-shadow: 0px 0.4px #67e3e6;
-    padding: 0px 0px 2px 0px;
-  }
-
-  .span-item {
-    color: #000000;
-    font-weight: normal;
-    font-size: x-small;
-    font-family: "Garamond";
-    text-align: start;
-    color: #291e61;
-    text-shadow: 0.6px 0px #67e3e6;
-    padding-left: 2px;
-  }
-
   .order-button {
     background-color: #eaf3ea;
     padding: 6px;
@@ -103,19 +83,6 @@
   .order-button-link {
     text-decoration: none;
     color: #241616;
-  }
-
-  .close-button {
-    background-color: transparent;
-    border: none;
-    border-radius: 20px;
-    color: #181717;
-    font-size: 14px;
-    align-self: flex-end;
-  }
-
-  .close {
-    margin: 0px;
   }
 
   .order-button:hover {
@@ -193,26 +160,6 @@
     font-size: smaller;
   }
 
-  .popup-items {
-    color: #000000;
-    font-weight: bold;
-    font-size: small;
-    font-family: "Garamond";
-    text-shadow: 0px 0.4px #67e3e6;
-    padding: 0px 0px 4px 0px;
-  }
-
-  .span-item {
-    color: #000000;
-    font-weight: 300;
-    font-size: small;
-    font-family: "Garamond";
-    text-align: start;
-    color: #291e61;
-    text-shadow: 0.6px 0px #67e3e6;
-    padding-left: 2px;
-  }
-
   .order-button {
     background-color: #eaf3ea;
     padding: 8px;
@@ -227,19 +174,6 @@
   .order-button-link {
     text-decoration: none;
     color: #241616;
-  }
-
-  .close-button {
-    background-color: transparent;
-    border: none;
-    border-radius: 20px;
-    color: #181717;
-    font-size: 18px;
-    align-self: flex-end;
-  }
-
-  .close {
-    margin: 0px;
   }
 
   .order-button:hover {
@@ -321,25 +255,6 @@
     animation: slideDown 1600ms;
   }
 
-  .popup-items {
-    color: #000000;
-    font-weight: bold;
-    font-size: large;
-    font-family: "Garamond";
-    text-shadow: 0px 0.4px #67e3e6;
-    padding: 0px 0px 4px 0px;
-  }
-
-  .span-item {
-    font-size: large;
-    font-family: "Garamond";
-    font-weight: normal;
-    text-align: justify;
-    color: #291e61;
-    text-shadow: 0.6px 0px #67e3e6;
-    padding-left: 4px;
-  }
-
   .order-button {
     background-color: #eaf3ea;
     padding: 10px;
@@ -355,19 +270,6 @@
   .order-button-link {
     text-decoration: none;
     color: #241616;
-  }
-
-  .close-button {
-    background-color: transparent;
-    border: none;
-    border-radius: 20px;
-    color: #181717;
-    font-size: 22px;
-    align-self: flex-end;
-  }
-
-  .close {
-    margin: 0px;
   }
 
   .order-button:hover {

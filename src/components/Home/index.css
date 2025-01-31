@@ -79,7 +79,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .home-header {
     background-image: url("https://res.cloudinary.com/dnmyyqfhs/image/upload/v1725546912/370684750a6a267dd39b96c71f1e51fe_mzygzl.jpg");
     background-size: cover;

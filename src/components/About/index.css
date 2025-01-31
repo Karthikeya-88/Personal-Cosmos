@@ -1,6 +1,6 @@
 @media screen and (max-width: 768px) {
   .about-container {
-    background-image: url("https://res.cloudinary.com/dnmyyqfhs/image/upload/v1726075920/nebulae-cosmic-stars-dark-blue-dark-background-digital-4480x2520-3926_vnifnz.jpg");
+    background-image: url("https://res.cloudinary.com/dnmyyqfhs/image/upload/v1732854298/nebulae-cosmic-stars-dark-blue-dark-background-digital-4480x2520-3926_ze6eak.jpg");
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@
 
 @media screen and (min-width: 768px) {
   .about-container {
-    background-image: url("https://res.cloudinary.com/dnmyyqfhs/image/upload/v1726075920/nebulae-cosmic-stars-dark-blue-dark-background-digital-4480x2520-3926_vnifnz.jpg");
+    background-image: url("https://res.cloudinary.com/dnmyyqfhs/image/upload/v1732854298/nebulae-cosmic-stars-dark-blue-dark-background-digital-4480x2520-3926_ze6eak.jpg");
     display: flex;
     flex-direction: column;
     font-size: larger;
