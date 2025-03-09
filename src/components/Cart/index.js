@@ -35,7 +35,7 @@ const Cart = () => {
               </div>
             ) : (
               <div className="cart-list-container">
-                <h1>My Books</h1>
+                <h1 style={{ fontSize: "28px" }}>My Books</h1>
                 <CartListView />
                 <h1 className="order-total-amount">
                   Your Order Total: {cartList.length * 450} /-

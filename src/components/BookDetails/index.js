@@ -59,9 +59,6 @@ class BookDetails extends Component {
         <Header />
 
         <div className="book-details-container">
-          <h1 className="detail-book-title">
-            {bookDetails.book.title || "No Title Available"}
-          </h1>
           {bookDetails.book.imageUrl && (
             <img
               src={bookDetails.book.imageUrl}
@@ -69,32 +66,40 @@ class BookDetails extends Component {
               className="book-details-img"
             />
           )}
-          <p className="popup-items">
-            Author: <span className="span-item">{bookDetails.book.author}</span>
-          </p>
-          <p className="popup-items">
-            Category:{" "}
-            <span className="span-item">{bookDetails.book.category}</span>
-          </p>
-          <p className="popup-items">
-            Published Date:{" "}
-            <span className="span-item">{bookDetails.book.published_date}</span>
-          </p>
-          <p className="popup-items">
-            Page Count:{" "}
-            <span className="span-item">{bookDetails.book.pages}</span>
-          </p>
-          <p className="popup-items">
-            Availability:{" "}
-            <span className="span-item">{bookDetails.book.availability}</span>
-          </p>
-          <p className="popup-items">
-            Overview:{" "}
-            <span className="span-item">{bookDetails.book.overview}</span>
-          </p>
-          <Link to="/books" style={{ marginTop: "16px" }}>
-            Go Back
-          </Link>
+          <div className="book-details-content">
+            <h1 className="detail-book-title">
+              {bookDetails.book.title || "No Title Available"}
+            </h1>
+            <div className="details-grid">
+              <div className="detail-item">
+                <h3>Author</h3>
+                <p>{bookDetails.book.author || "N/A"}</p>
+              </div>
+              <div className="detail-item">
+                <h3>Category</h3>
+                <p>{bookDetails.book.category || "N/A"}</p>
+              </div>
+              <div className="detail-item">
+                <h3>Published Date</h3>
+                <p>{bookDetails.book.published_date || "N/A"}</p>
+              </div>
+              <div className="detail-item">
+                <h3>Page Count</h3>
+                <p>{bookDetails.book.pages || "N/A"}</p>
+              </div>
+              <div className="detail-item">
+                <h3>Availability</h3>
+                <p>{bookDetails.book.availability || "N/A"}</p>
+              </div>
+            </div>
+            <div className="overview">
+              <h3>Overview</h3>
+              <p>{bookDetails.book.overview || "No overview available."}</p>
+            </div>
+            <Link to="/books" style={{ marginTop: "16px" }}>
+              Go Back
+            </Link>
+          </div>
         </div>
       </div>
     );

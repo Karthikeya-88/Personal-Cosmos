@@ -47,7 +47,7 @@ class BookData extends Component {
           const { title, author, imageUrl } = this.props.bookDetails;
 
           const onAddToCart = () => {
-            addCartItem({ ...this.props.bookDetails });
+            addCartItem({ ...this.props.bookDetails, quantity: 1 });
           };
 
           return (

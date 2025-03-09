@@ -24,23 +24,23 @@
 }
 
 .cart-book-name {
-  font-size: 20px;
-  padding: 10px;
+  font-size: 18px;
+  padding: 8px;
 }
 
 .cart-book-img {
   width: 60px;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 
 .amount {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bolder;
 }
 
 .remove-button {
   background-color: transparent;
-  border: 2px double #002e6e;
+  border: 1.6px double #002e6e;
   border-radius: 80px;
   color: #002e6e;
   padding-top: 6px;

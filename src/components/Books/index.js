@@ -64,13 +64,6 @@ class Books extends Component {
     this.setState({ searchInput: event.target.value });
   };
 
-  onActiveCategory = (event) => {
-    this.setState(
-      { activeCatId: event.target.value, isLoading: true },
-      this.getBooks
-    );
-  };
-
   sortAscending = () => {
     this.setState((prevState) => ({
       booksData: [...prevState.booksData].sort((a, b) =>
@@ -88,8 +81,15 @@ class Books extends Component {
   };
 
   renderNoBooks = () => (
-    <div>
-      <p>Sorry, no books found in this category.</p>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "80px",
+      }}
+    >
+      <h2>Apologies, no books were found!</h2>
     </div>
   );
 

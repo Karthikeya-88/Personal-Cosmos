@@ -154,18 +154,22 @@
   .header-list-item {
     color: #0b0042;
     font-family: "Book Antique";
-    margin-right: 28px;
+    font-size: 18px;
+    margin-right: 20px;
     font-weight: bolder;
     text-decoration: none;
     text-align: center;
     display: flex;
     align-items: center;
+    position: relative;
+    padding: 10px 15px;
+    transition: color 0.8s ease-in-out;
   }
 
   .cart-list-badge {
-    padding: 1px 6px 1px 6px;
+    padding: 0px 8px 0px 8px;
     background-color: #0b0042;
-    border-radius: 100px;
+    border-radius: 80px;
     margin-top: 1px;
     color: #0cb7e6;
     font-size: 16px;
@@ -180,6 +184,24 @@
   padding: 2px 10px 2px 10px;
 }
 
+.header-list-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
 .header-list-item:hover {
-  box-shadow: inset 0px 2px 0px #ffffff;
+  color: #0b0042;
+}
+
+.header-list-item:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
 }

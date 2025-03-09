@@ -9,18 +9,23 @@
     padding: 20px;
     min-width: 380px;
     background-size: cover;
+    background-position: center;
+    animation: fadeIn 1.5s ease-in-out;
   }
 
   .about-header {
     color: #ffffff;
-    font-family: "Cambria";
+    font-family: "Bree Serif";
     font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: slideInFromTop 1s ease-in-out;
   }
 
   .about-ul {
     color: #ffffff;
-    font-family: "Garamond";
+    font-family: "Garamond", serif;
     font-size: 18px;
+    animation: fadeIn 2s ease-in-out;
   }
 
   .linked-in-redirect {
@@ -32,6 +37,13 @@
     text-align: start;
     font-size: 16px;
     color: bisque;
+    transition:
+      color 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+  }
+
+  .linked-in-redirect:hover {
+    transform: scale(1.05);
   }
 
   .about-li {
@@ -39,12 +51,22 @@
     text-align: justify;
     padding: 12px;
     text-shadow: 1px 0px #4e4d4d;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .about-li:hover {
+    transform: translateX(10px);
   }
 
   .redirect-icon {
     padding: 4px 1px 1px 2px;
     color: #00ffbf;
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .redirect-icon:hover {
+    color: #ffc20e;
   }
 }
 
@@ -56,18 +78,24 @@
     font-size: larger;
     align-items: center;
     padding: 48px;
+    background-size: cover;
+    background-position: center;
+    animation: fadeIn 1.5s ease-in-out;
   }
 
   .about-header {
     color: #e0e1e1;
-    font-family: "Poppins";
+    font-family: "Bree Serif";
     font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: slideInFromTop 1s ease-in-out;
   }
 
   .about-ul {
     color: #e0e1e1;
-    font-family: "Perpetua";
+    font-family: "Perpetua", serif;
     font-size: 20px;
+    animation: fadeIn 2s ease-in-out;
   }
 
   .linked-in-redirect {
@@ -78,6 +106,13 @@
     font-weight: bold;
     font-size: 24px;
     color: bisque;
+    transition:
+      color 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+  }
+
+  .linked-in-redirect:hover {
+    transform: scale(1.05);
   }
 
   .about-li {
@@ -85,11 +120,41 @@
     list-style-type: decimal;
     text-align: justify;
     text-shadow: 1px 0px #4e4d4d;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .about-li:hover {
+    transform: translateX(10px);
   }
 
   .redirect-icon {
     padding: 4px 2px 1px 4px;
     color: #00ffbf;
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .redirect-icon:hover {
+    color: #ffc20e;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
