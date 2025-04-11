@@ -60,13 +60,13 @@
 
   .redirect-icon {
     padding: 4px 1px 1px 2px;
-    color: #00ffbf;
+    color: #ffc20e;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
   }
 
   .redirect-icon:hover {
-    color: #ffc20e;
+    transform: scale(1.4);
   }
 }
 
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 20px;
     font-weight: bold;
     font-size: 24px;
     color: bisque;
@@ -128,14 +128,15 @@
   }
 
   .redirect-icon {
+    margin-top: 6px;
     padding: 4px 2px 1px 4px;
-    color: #00ffbf;
+    color: #ffc20e;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
   }
 
   .redirect-icon:hover {
-    color: #ffc20e;
+    transform: scale(1.6);
   }
 }
 

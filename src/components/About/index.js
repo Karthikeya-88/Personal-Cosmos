@@ -1,5 +1,5 @@
 import Header from "../Header";
-import { IoIosNavigate } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
 import "./index.css";
 
 const About = () => (
@@ -11,10 +11,10 @@ const About = () => (
         <ul className="about-ul">
           <li className="linked-in-redirect">
             <a
-              href="https://www.linkedin.com/in/karthikeya-doosa-210a42244"
+              href="https://portfolio-k4xr.vercel.app/"
               className="redirect-icon"
             >
-              <IoIosNavigate />
+              <CgProfile />
             </a>
             Karthikeya Doosa is the creator of Personal Cosmos, an innovative
             web platform.
